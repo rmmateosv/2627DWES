@@ -113,7 +113,29 @@
     $nums = array(2,3,4,'hola');
     echo '<h3>FUNCIÓN SUMA:'.(suma($nums)==null?'Error en los datos':suma($nums)).'</h3>';
 
-        //Hacer una función recursiva que muestre el array misDatos o misDatosA
+    //Hacer una función recursiva que muestre el array misDatos o misDatosA
+    function pintarArray($array){
+        echo '<table border="1">';
+        echo '<tr>';
+        foreach($array as $item){
+            echo '<td>';
+            //Si el elemento no es un array, se muestra el contenido
+            if(!is_array($item)){
+                echo $item;
+            }
+            else{
+                //Pinto el array
+                pintarArray($item);
+            }
+            echo '</td>';
+        }
+        echo '</tr>';
+        echo '</table>';
+    }
+    //Probamos la función
+    echo '<h3>FUNCIÓN RECURSIVA</h3>';
+    pintarArray(array('Qué mal día','Hoy es lunes',28));
+    pintarArray($misDatosA);
      ?>
 </body>
 </html>

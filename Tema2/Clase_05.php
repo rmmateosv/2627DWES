@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <form action="Clase_05_f1.php" method="post">
+    <form action="Clase_05_f1.php" method="post" enctype="multipart/form-data">
         <div>
             <label for="idFecha">Fecha</label><br />
             <input type="date" name="fecha" id="idFecha" 

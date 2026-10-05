@@ -99,7 +99,12 @@ if($_SERVER['REQUEST_METHOD']!='POST'){
         }
     }
     //Comprobar que un alumno debe tener marcado al menos dos asignaturas
-
+    if(isset($_POST['tipo']) && $_POST['tipo']=='Alumno'){
+        //Chequear el nº de asignaturas
+        if(!isset($_POST['asig']) || sizeof($_POST['asig'])<2){
+            echo '<h3 style="color:red;">El alumnos debe matricularse al menos en 2 asignaturas</h3>';
+        }
+    }
      ?>
 </body>
 </html>

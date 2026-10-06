@@ -45,8 +45,10 @@
                 echo '<h3>RESUMEN DE JUGADORES</h3>';
                 echo '<ul>';
                 foreach($_POST['nombre'] as $n){
-                    echo '<li><a href="Clase_07_f1.php?nombre='.$n.'&cb='.$_POST['cb'].
-                    '&cf='.$_POST['cf'].'">'.$n.'</a></li>';
+                    $url = 'Clase_07_f1.php?nombre='.rawurlencode($n).
+                    '&cb='.rawurlencode($_POST['cb']).
+                    '&cf='.rawurlencode($_POST['cf']);                    
+                    echo '<li><a href="'.$url.'">'.$n.'</a></li>';
                 }
                 echo '</ul>';
                 echo '</div>';

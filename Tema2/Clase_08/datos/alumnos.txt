@@ -1,0 +1,4 @@
+1a;ana;2026-10-09;No;Mujer;No
+1b;pepe;2026-10-13;No;Hombre;No
+1c;lolo;2026-10-09;No;Hombre;No
+1d;jj;2026-10-07;Sí;Hombre;Sí

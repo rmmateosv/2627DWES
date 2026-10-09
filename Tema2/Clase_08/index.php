@@ -38,6 +38,10 @@ require_once 'controlador.php';
         </div>
     </form>
     <?php 
+    //Pintar mensajes
+    if(isset($mensaje)){
+        echo '<h3 style="color:green">'.$mensaje.'</h3>';
+    }
     //Pintar errores
     if(isset($error)){
         echo '<h3 style="color:red">'.$error.'</h3>';

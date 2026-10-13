@@ -64,7 +64,7 @@ require_once 'controlador.php';
             echo '<tr>';
             echo '<td>'.$a->getDni().'</td>';
             echo '<td>'.$a->getNombre().'</td>';
-            echo '<td>'.$a->getFn().'</td>';
+            echo '<td>'.date('d/m/Y',strtotime($a->getFn())).'</td>';
             echo '<td>'.$a->getSexo().'</td>';
             echo '<td>'.$a->getBus().'</td>';
             echo '<td>'.$a->getBeca().'</td>';

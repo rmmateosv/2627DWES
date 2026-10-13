@@ -14,7 +14,7 @@ class Alumno{
 
     function __destruct()
     {
-        echo 'El alumno se ha liberado';
+        //echo 'El alumno se ha liberado';
     }
 
 

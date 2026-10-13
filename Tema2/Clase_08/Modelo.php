@@ -25,6 +25,25 @@ class Modelo{
         }
         return false;
     }
+    function cargarAlumnos(){
+        $resultado =  array();
+        //Comprobar si exsite el fichero
+        if(file_exists($this->nombreF)){
+            //Pasamos el fichero a un array de textos
+            $texto = file($this->nombreF, FILE_IGNORE_NEW_LINES);
+            //Transformamos el array de textos en array de objetos Alumno
+            foreach($texto as $t){
+                //Pasamos cada linea de texto a un array
+                $datos = explode(';',$t);
+                //Crear un objeto Alumno
+                $a = new Alumno($datos[0],$datos[1],$datos[2],$datos[3],
+                                $datos[4],$datos[5]);
+                //Añadir el objeto al array
+                $resultado[]=$a;
+            }
+        }
+        return $resultado;
+    }
 
     /**
      * Get the value of nombreF

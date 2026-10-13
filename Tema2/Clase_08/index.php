@@ -47,5 +47,30 @@ require_once 'controlador.php';
         echo '<h3 style="color:red">'.$error.'</h3>';
     }
      ?>
+
+     <h2>ALUMNOS MATRICULADOS</h2>
+     <table border="1">
+        <tr>
+            <td>DNI</td>
+            <td>NOMBRE</td>
+            <td>FECHA NACIMIENTO</td>
+            <td>SEXO</td>
+            <td>TRANSPORTE</td>
+            <td>BECA</td>
+        </tr>
+        <?php 
+        //Mostrar los alumnos
+        foreach($alumnos as $a){
+            echo '<tr>';
+            echo '<td>'.$a->getDni().'</td>';
+            echo '<td>'.$a->getNombre().'</td>';
+            echo '<td>'.$a->getFn().'</td>';
+            echo '<td>'.$a->getSexo().'</td>';
+            echo '<td>'.$a->getBus().'</td>';
+            echo '<td>'.$a->getBeca().'</td>';
+            echo '</tr>';
+        }
+         ?>
+     </table>
 </body>
 </html>

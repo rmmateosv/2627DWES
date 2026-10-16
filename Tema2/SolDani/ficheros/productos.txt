@@ -1,0 +1,10 @@
+{"nombre":"Pan","fecha":"2026-10-12","categoria":"alimentacion","tipo":["frescos"],"precio":"1.20","iva":"10","descuentos":"desempleado","foto":"foto_6accb212381c34.87990055.jpg"}
+{"nombre":"Pan","fecha":"2026-10-12","categoria":"alimentacion","tipo":["frescos"],"precio":"1.20","iva":"10","descuentos":"desempleado","foto":"foto_6accb26e3b5783.82360044.jpg"}
+{"nombre":"Pan","fecha":"2026-10-12","categoria":"alimentacion","tipo":["frescos"],"precio":"1.20","iva":"10","descuentos":"desempleado","foto":"foto_6accb3b3d956f9.09981763.jpg"}
+{"nombre":"Pan","fecha":"2026-10-12","categoria":"alimentacion","tipo":["frescos"],"precio":"1.20","iva":"10","descuentos":"desempleado","foto":"foto_6accb460dfb1f5.34006793.jpg"}
+{"nombre":"Pan","fecha":"2026-10-12","categoria":"alimentacion","tipo":["frescos"],"precio":"1.20","iva":"10","descuentos":"desempleado","foto":"foto_6accb46f0aefd9.69008981.jpg"}
+{"nombre":"Pan","fecha":"2026-10-12","categoria":"alimentacion","tipo":["frescos"],"precio":"1.20","iva":"10","descuentos":"desempleado","foto":"foto_6accb48ddcae78.70799432.jpg"}
+{"nombre":"Ejemplo","fecha":"2026-10-13","categoria":"alimentacion","tipo":["lacteos","frescos"],"precio":"50","iva":"4","descuentos":"jubilado","foto":"foto_6accd45337ab20.08030718.jpg"}
+{"nombre":"Ejemplo 2","fecha":"2026-10-13","categoria":"drogueria","tipo":["otros"],"precio":"600","iva":"21","descuentos":"desempleado","foto":"foto_6accd4c90c0b51.17210111.jpg"}
+{"nombre":"Ejemplo 3","fecha":"2026-10-16","categoria":"alimentacion","tipo":["lacteos","frescos","panaderia"],"precio":"70000","iva":"4","descuentos":"desempleado","foto":"foto_6accd568530bc3.66662602.jpg"}
+{"nombre":"ejemp 4","fecha":"2026-10-13","categoria":"alimentacion","tipo":["lacteos","frescos"],"precio":"3222","iva":"10","descuentos":["joven","jubilado","desempleado"],"foto":"foto_6accd60779dea2.79493620.jpg"}

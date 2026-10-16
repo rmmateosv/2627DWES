@@ -1,0 +1,20 @@
+1;Alemania;Berlín
+2;Argentina;Buenos Aires
+3;Australia;Canberra
+4;Brasil;Brasilia
+5;Canadá;Ottawa
+6;Chile;Santiago
+7;Colombia;Bogotá
+8;España;Madrid
+9;Estados Unidos;Washington D.C.
+10;Francia;París
+11;Italia;Roma
+12;Japón;Tokio
+13;México;Ciudad de México
+14;Países Bajos;Ámsterdam
+15;Perú;Lima
+16;Portugal;Lisboa
+17;Reino Unido;Londres
+18;Sudáfrica;Pretoria
+19;Suiza;Berna
+20;Uruguay;Montevideo

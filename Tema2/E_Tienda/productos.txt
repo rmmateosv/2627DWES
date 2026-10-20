@@ -1,0 +1,2 @@
+Pan;2026-10-20;Alimentación;No;Sí;No;No;1.00;21;Jubilados;img/foto.png
+Leche;2026-10-20;Alimentación;Sí;No;No;No;1.45;4;Desempleados;img/foto.png

@@ -50,6 +50,42 @@ require_once 'controlador.php';
     if(isset($error)){
         echo $error;
     }
+    if(isset($mensaje)){
+        echo $mensaje;
+    }    
     ?>
+    <h3>Productos Creados</h3>
+    <table border="1">
+        <tr>
+            <td>Nombre</td>
+            <td>Fecha</td>
+            <td>Categoría</td>
+            <td>Lacteos</td>
+            <td>Frescos</td>
+            <td>Panadería</td>
+            <td>Otros</td>
+            <td>Precio</td>
+            <td>Tipo Iva</td>
+            <td>Descuentos</td>
+            <td>Foto</td>
+        </tr>
+        <?php 
+            foreach($productos as $p){
+                echo '<tr>';
+                echo '<td>'.$p->getNombre().'</td>';
+                echo '<td>'.date('d/m/Y', strtotime($p->getFecha())).'</td>';
+                echo '<td>'.$p->getCategoria().'</td>';
+                echo '<td>'.$p->getLacteo().'</td>';
+                echo '<td>'.$p->getFresco().'</td>';
+                echo '<td>'.$p->getPanaderia().'</td>';
+                echo '<td>'.$p->getOtros().'</td>';
+                echo '<td>'.$p->getPrecio().'</td>';
+                echo '<td>'.$p->getTipoIva().'</td>';
+                echo '<td>'.$p->getDescuentos().'</td>';
+                echo '<td><img src="'.$p->getFoto().'" width="30px"></td>';
+                echo '</tr>';
+            }
+         ?>
+    </table>
 </body>
 </html>

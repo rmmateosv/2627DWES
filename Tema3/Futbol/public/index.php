@@ -11,7 +11,9 @@ $error=array();
 //Iniciar sesión
 session_start();
 
-//Cargar datos de configuración (aún no lo hemos visto)
+//Cargar datos de configuración
+require_once RAIZ.'/baseDatos/ConexionBD.php';
+ConexionBD::conectar();
 
 //Obtener el controlador de la ruta
 $controlador=$_GET['controlador']??'login';

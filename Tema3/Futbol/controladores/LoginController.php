@@ -14,17 +14,28 @@ class LoginController{
     }
 
     function loguear(){
-        global $error;        
-        if(empty($_POST['dni']) || empty($_POST['ps'])){
-            $error[] = 'Debes rellenar dni y contraseña';
-            //Nos quedamos en vista login
-            require RAIZ.'/vistas/vista_login.php';
-        }
-        else{
-            //Validar si el dni y la contraseña son correctos
-            $error[]=$this->modelo->loguear($_POST['dni'],$_POST['ps']);
-        }
-        
+        global $error;   
+        try {
+            if(empty($_POST['dni']) || empty($_POST['ps'])){
+                throw new Exception('Debes rellenar dni y contraseña');               
+            }
+            else{
+                //Validar si el dni y la contraseña son correctos
+                $u=$this->modelo->loguear($_POST['dni'],$_POST['ps']);
+                if($u==null){
+                    //Login incoreccto
+                    throw new Exception('Datos incorrectos'); 
+                }
+                else{
+                    //Guardar en una variable de sesión los datos del usuario logueado
+                    $_SESSION['usuario'] = $u;
+                }
+            }
+        } catch (\Throwable $th) {
+           $error[]=$th->getMessage();
+        }  
+        require RAIZ.'/vistas/vista_login.php';           
     }
+    
 }
 ?>

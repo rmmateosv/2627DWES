@@ -29,6 +29,8 @@ class LoginController{
                 else{
                     //Guardar en una variable de sesión los datos del usuario logueado
                     $_SESSION['usuario'] = $u;
+                    //REcargar index, para que se actualice el aray $_SESSION
+                    header('location:'.RAIZ.'/public');
                 }
             }
         } catch (\Throwable $th) {

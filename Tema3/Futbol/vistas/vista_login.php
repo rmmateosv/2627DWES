@@ -1,3 +1,24 @@
+<?php
+require_once RAIZ.'/modelos/Usuario.php';
+
+//Si hay un usuario logueado, en función del perfil
+//redirige a su controlador
+if(isset($_SESSION['usuario'])){
+    //Comprobar perfil
+    if($_SESSION['usuario']->getPerfil()=='F'){
+        //Cargar el controlador de Federación
+        header('location:'.RAIZ.'/public/index.php?controlador=federacion&accion=cargar');
+    }
+    elseif($_SESSION['usuario']->getPerfil()=='A'){
+        //Cargar el controlador de Federación
+        header('location:'.RAIZ.'/public/index.php?controlador=arbitro&accion=cargar');
+    }
+    elseif($_SESSION['usuario']->getPerfil()=='J'){
+        //Cargar el controlador de Federación
+        header('location:'.RAIZ.'/public/index.php?controlador=jugador&accion=cargar');
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

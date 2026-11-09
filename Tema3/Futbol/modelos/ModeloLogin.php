@@ -17,7 +17,7 @@ class ModeloLogin{
                 if($fila=$consulta->fetch()){
                     //Crear objeto usuario
                     $resultado = new Usuario($fila['dni'],$fila['nombre'],
-                        $fila['perfil'],$fila['equipo']);
+                        $fila['perfil'],$fila['id_equipo']);
                 }
             }
         } catch (\Throwable $th) {

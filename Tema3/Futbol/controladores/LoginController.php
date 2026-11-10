@@ -55,6 +55,11 @@ class LoginController{
         }  
         require RAIZ.'/vistas/vista_login.php';           
     }
+    function salir(){
+        //Cerrar sesión y redirigir a index
+        session_destroy();
+        header('location:index.php');
+    }
     
 }
 ?>

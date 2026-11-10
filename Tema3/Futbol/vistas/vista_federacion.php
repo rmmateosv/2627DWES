@@ -6,6 +6,9 @@
     <title>Fútbol</title>
 </head>
 <body>
+    <?php 
+        require RAIZ.'/vistas/menu.php';
+     ?>
     <h1>LIGA DE FÚTBOL ies AUGUSTÓBRIGA</h1>
     <h2>Gestión de fedaración</h2>
     <?php 

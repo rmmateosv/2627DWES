@@ -12,6 +12,28 @@
     <h1>LIGA DE FÚTBOL ies AUGUSTÓBRIGA</h1>
     <h2>Gestión de Usuarios</h2>
     <div>
+        <form action="">
+            <input type="text" name="dni" placeholder="DNI">
+            <input type="text" name="nombre" placeholder="Nombre">
+            <select name="perfil">
+                <option value="A">Árbitro</option>
+                <option value="F">Federación</option>
+                <option value="J">Jugador</option>
+            </select>
+            <select name="equipo" id="">
+                <!-- Select dinámico, se carga con los equipos de la tabla -->
+                 <?php
+                 //$equipos es un array de objetos equipo
+                 if(isset($equipos)){
+                    foreach ($equipos as $e) {
+                        echo '<option value="'.$e->getId().'">'.$e->getNombre().'</option>';
+                    }
+                 }
+                 ?>
+            </select>
+        </form>
+    </div>
+    <div>
         <!-- MOSTRAR USUARIOS -->
          <table border="1">
             <tr>

@@ -1,12 +1,15 @@
 <?php
 require_once RAIZ.'/modelos/ModeloLogin.php';
+require_once RAIZ.'/modelos/ModeloEquipo.php';
 
 class FederacionController{
     private $modeloL;
+    private $modeloE;
 
     function __construct()
     {
         $this->modeloL = new ModeloLogin();
+        $this->modeloE = new ModeloEquipo();
     }
     function cargar(){
         require RAIZ.'/vistas/vista_federacion.php';
@@ -17,6 +20,8 @@ class FederacionController{
         try {
             //Recuperar usuarios
             $usuarios = $this->modeloL->obtenerUsuarios();
+            //REcuperar equipos
+            $equipos = $this->modeloE->obtenerEquipos();
         } catch (\Throwable $th) {
             $error[] = $th->getMessage();
         }        

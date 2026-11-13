@@ -12,7 +12,7 @@
     <h1>LIGA DE FÚTBOL ies AUGUSTÓBRIGA</h1>
     <h2>Gestión de Usuarios</h2>
     <div>
-        <form action="">
+        <form action="index?controlador=login&accion=crearU">
             <input type="text" name="dni" placeholder="DNI">
             <input type="text" name="nombre" placeholder="Nombre">
             <select name="perfil">
@@ -29,8 +29,9 @@
                         echo '<option value="'.$e->getId().'">'.$e->getNombre().'</option>';
                     }
                  }
-                 ?>
+                 ?>                 
             </select>
+            <button type="submit" name="crear">Crear Usuario</button>
         </form>
     </div>
     <div>

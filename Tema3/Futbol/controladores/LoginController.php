@@ -60,6 +60,20 @@ class LoginController{
         session_destroy();
         header('location:index.php');
     }
+    function crearU(){
+        global $error;
+        try {
+            //Chequear que se rellenand los datos
+            if(empty($_POST['dni']) || empty($_POST['nombre']) || empty($_POST['perfil'])){
+                throw new Exception('Rellena dni, nombre y perfil');
+            }
+            if($_POST['perfil']=='J' && empty($_POST['equipo'])){
+                throw new Exception('Rellena equipo para los jugadores');
+            }
+        } catch (\Throwable $th) {
+            $error[]=$th->getMessage();
+        }
+    }
     
 }
 ?>

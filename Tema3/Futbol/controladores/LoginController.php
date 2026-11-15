@@ -70,6 +70,14 @@ class LoginController{
             if($_POST['perfil']=='J' && empty($_POST['equipo'])){
                 throw new Exception('Rellena equipo para los jugadores');
             }
+            //Insert de usuario
+            $u=new Usuario($_POST['dni'],$_POST['nombre'],
+                $_POST['perfil'],($_POST['perfil']=='J'?$_POST['equipo']:null));
+            if(!$this->modelo->crearUsuario($u)){
+                throw new Exception('Error al crear el usuario');
+            }
+            //Redirigimos a la página federación/usuarios
+            header('location:index.php?controlador=federacion&accion=usuarios');
         } catch (\Throwable $th) {
             $error[]=$th->getMessage();
         }

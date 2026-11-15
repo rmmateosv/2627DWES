@@ -43,5 +43,20 @@ class ModeloLogin{
         }
         return $resultado;
     }
+    function crearUsuario(Usuario $u){
+        $resultado = false;
+        try {
+            $consulta = ConexionBD::$conexion->prepare('INSERT into usuarios values (default,?,?,sha2(?,512),?,?)');
+            //numReg contiene el número de regristro insertados.
+            //execute cuando la consulta es Insert, update o delete, devuelve el número de registros afectados
+            $numReg=$consulta->execute(array($u->getDni(),$u->getNombre(),$u->getDni(),$u->getPerfil(),$u->getEquipo()));
+            if($numReg==1){
+                $resultado=true;
+            }
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+        return $resultado;
+    }
 }
 ?>

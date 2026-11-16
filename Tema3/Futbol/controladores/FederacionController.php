@@ -16,14 +16,13 @@ class FederacionController{
     }
 
     function usuarios(){
-        global $error;
         try {
             //Recuperar usuarios
             $usuarios = $this->modeloL->obtenerUsuarios();
             //REcuperar equipos
             $equipos = $this->modeloE->obtenerEquipos();
         } catch (\Throwable $th) {
-            $error[] = $th->getMessage();
+            $_SESSION['error'][] = $th->getMessage();
         }        
         //Cargar la vista de gestión de usuarios
         require RAIZ.'/vistas/vista_usuarios.php';

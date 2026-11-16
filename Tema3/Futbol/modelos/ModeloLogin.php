@@ -31,12 +31,15 @@ class ModeloLogin{
         try {
             //Hacemos un select a la tabla usuarios
             //Como no hay where, no hay parámetros, hacemos un query en vez de un prepare
-            $consulta = ConexionBD::$conexion->query('SELECT * from usuarios');
+            $consulta = ConexionBD::$conexion->query('SELECT * 
+                            from usuarios u left join equipos e
+                            on u.id_equipo = e.id');
             //Tratamos el resultado de la consulta que al ser un select * sin where
             //puede devolver más de un registro. HAcemos un WHILE
             while($fila=$consulta->fetch()){
                 //Añadimos a resultado un objeto Usuario que se crea con los datos de fila
-                $resultado[]=new Usuario($fila['dni'],$fila['nombre'],$fila['perfil'],$fila['id_equipo']);
+                $resultado[]=new Usuario($fila['dni'],$fila[2],$fila['perfil'],
+                ($fila['id_equipo']==null?null:new Equipo($fila['id_equipo'],$fila[7],$fila['cp'])));
             }
         } catch (\Throwable $th) {
             throw $th;
@@ -50,6 +53,21 @@ class ModeloLogin{
             //numReg contiene el número de regristro insertados.
             //execute cuando la consulta es Insert, update o delete, devuelve el número de registros afectados
             $numReg=$consulta->execute(array($u->getDni(),$u->getNombre(),$u->getDni(),$u->getPerfil(),$u->getEquipo()));
+            if($numReg==1){
+                $resultado=true;
+            }
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+        return $resultado;
+    }
+    function borrarUsuario($dni){
+        $resultado = false;
+        try {
+            $consulta = ConexionBD::$conexion->prepare('DELETE from usuarios where dni = ?');
+            //numReg contiene el número de regristro insertados.
+            //execute cuando la consulta es Insert, update o delete, devuelve el número de registros afectados
+            $numReg=$consulta->execute(array($dni));
             if($numReg==1){
                 $resultado=true;
             }

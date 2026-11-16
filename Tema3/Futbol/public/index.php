@@ -9,11 +9,14 @@ define('RAIZ',__DIR__.'/..');
 require_once RAIZ.'/modelos/Usuario.php';
 require_once RAIZ.'/modelos/Equipo.php';
 
-//array global para errores
-$error=array();
-
 //Iniciar sesión
 session_start();
+
+//array global para errores
+if(!isset($_SESSION['error'])){
+    $_SESSION['error']=array();  
+}
+
 
 //Cargar datos de configuración
 require_once RAIZ.'/baseDatos/ConexionBD.php';

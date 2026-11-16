@@ -30,8 +30,7 @@ class LoginController{
         require RAIZ.'/vistas/vista_login.php';
     }
 
-    function loguear(){
-        global $error;   
+    function loguear(){ 
         try {
             if(empty($_POST['dni']) || empty($_POST['ps'])){
                 throw new Exception('Debes rellenar dni y contraseña');               
@@ -51,7 +50,7 @@ class LoginController{
                 }
             }
         } catch (\Throwable $th) {
-           $error[]=$th->getMessage();
+           $_SESSION['error'][]=$th->getMessage();
         }  
         require RAIZ.'/vistas/vista_login.php';           
     }
@@ -61,7 +60,6 @@ class LoginController{
         header('location:index.php');
     }
     function crearU(){
-        global $error;
         try {
             //Chequear que se rellenand los datos
             if(empty($_POST['dni']) || empty($_POST['nombre']) || empty($_POST['perfil'])){
@@ -76,11 +74,23 @@ class LoginController{
             if(!$this->modelo->crearUsuario($u)){
                 throw new Exception('Error al crear el usuario');
             }
-            //Redirigimos a la página federación/usuarios
-            header('location:index.php?controlador=federacion&accion=usuarios');
         } catch (\Throwable $th) {
-            $error[]=$th->getMessage();
+           $_SESSION['error'][]=$th->getMessage();
         }
+        //Redirigimos a la página federación/usuarios
+        header('location:index.php?controlador=federacion&accion=usuarios');        
+    }
+    function borrarU(){
+        try {
+            //Delete de usuario
+            if(!$this->modelo->borrarUsuario($_POST['borrar'])){
+                throw new Exception('Error al borrar el usuario');
+            }
+        } catch (\Throwable $th) {
+           $_SESSION['error'][]=$th->getMessage();
+        }
+        //Redirigimos a la página federación/usuarios
+        header('location:index.php?controlador=federacion&accion=usuarios'); 
     }
     
 }

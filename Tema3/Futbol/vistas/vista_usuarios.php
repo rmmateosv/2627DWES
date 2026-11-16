@@ -56,8 +56,9 @@
                     echo '<td>'.$u->getDni().'</td>';
                     echo '<td>'.$u->getNombre().'</td>';
                     echo '<td>'.$u->getPerfil().'</td>';
-                    echo '<td>'.$u->getEquipo().'</td>';
-                    echo '<td><button type="submit" class="btn btn-light">Modificar</button><button type="submit" class="btn btn-light">Borrar</button></td>';
+                    echo '<td>'.($u->getEquipo()==null?'':$u->getEquipo()->getNombre()).'</td>';
+                    echo '<td><button type="submit" class="btn btn-light">Modificar</button>'.
+                    '<form action="index.php?controlador=login&accion=borrarU" method="post"><button type="submit" name="borrar" value="'.$u->getDni().'" class="btn btn-light">Borrar</button></form></td>';
                     echo '</tr>';
                 }
             }

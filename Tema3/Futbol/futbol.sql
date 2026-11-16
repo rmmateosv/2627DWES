@@ -7,6 +7,11 @@ create table equipos(
 	nombre varchar(100) unique not null,
     cp int
 )engine innodb;
+insert into equipos values
+(default,'Moralo', 10300),
+(default,'Talayuela', 10310),
+(default,'Jaraiz', 10400),
+(default,'Peraleda', 10335);
 
 create table usuarios(
 	id int primary key auto_increment,

@@ -54,11 +54,42 @@
                 foreach($usuarios as $u){
                     echo '<tr>';
                     echo '<td>'.$u->getDni().'</td>';
+                    if(isset($_POST['modificar']) && $u->getDni()==$_POST['modificar']){
+                        echo '<form action="index.php?controlador=login&accion=guardarU" method="post">';
+                        echo '<td><input type="text" name="nombre" value="'.$u->getNombre().'"></td>';
+                        //Select de perfil
+                        echo '<td><select name="perfil">';
+                        echo '<option value="A" '.($u->getPerfil()=='A'?'selected':'').'>Árbitro</option>';
+                        echo '<option value="F" '.($u->getPerfil()=='F'?'selected':'').'>Federación</option>';
+                        echo '<option value="J" '.($u->getPerfil()=='J'?'selected':'').'>Jugador</option>';
+                        echo '</select></td>';
+                        //Equipo
+                        echo '<td><select name="equipo" id="">';
+                        if(isset($equipos)){
+                            foreach ($equipos as $e) {
+                                echo '<option value="'.$e->getId().'" '
+                                .($u->getEquipo()!=null && $u->getEquipo()->getId()==$e->getId()?'selected':'').'>'.$e->getNombre().'</option>';
+                            }
+                        }                                     
+                        echo '</select></td>';
+                        echo '<td><button type="submit" name="guardar" value="'.$u->getDni().'" class="btn btn-light">Guardar</button>';
+                        echo '<a class="btn btn-light" href="index.php?controlador=federacion&accion=usuarios">Cancelar</a></td>';
+                        echo '</form>';
+                    }
+                    else{
                     echo '<td>'.$u->getNombre().'</td>';
                     echo '<td>'.$u->getPerfil().'</td>';
                     echo '<td>'.($u->getEquipo()==null?'':$u->getEquipo()->getNombre()).'</td>';
-                    echo '<td><button type="submit" class="btn btn-light">Modificar</button>'.
-                    '<form action="index.php?controlador=login&accion=borrarU" method="post"><button type="submit" name="borrar" value="'.$u->getDni().'" class="btn btn-light">Borrar</button></form></td>';
+                    //Botón modificar
+                    echo '<td>';
+                    echo '<form action="index.php?controlador=federacion&accion=usuarios" method="post">';
+                    echo '<button type="submit" name="modificar" value="'.$u->getDni().'" class="btn btn-light">Modificar</button>';
+                    echo '</form>';
+                    // Botón borrar
+                    echo '<form action="index.php?controlador=login&accion=borrarU" method="post">';
+                    echo '<button type="submit" name="borrar" value="'.$u->getDni().'" class="btn btn-light">Borrar</button>';
+                    echo '</form></td>';
+                    }//Fin else si editar o visualizar
                     echo '</tr>';
                 }
             }

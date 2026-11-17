@@ -92,6 +92,27 @@ class LoginController{
         //Redirigimos a la página federación/usuarios
         header('location:index.php?controlador=federacion&accion=usuarios'); 
     }
+    function guardarU(){
+        try {
+            //Chequear que se rellenan los datos
+            if(empty($_POST['nombre']) || empty($_POST['perfil'])){
+                throw new Exception('Rellena nombre y perfil');
+            }
+            if($_POST['perfil']=='J' && empty($_POST['equipo'])){
+                throw new Exception('Rellena equipo para los jugadores');
+            }
+            //Update de usuario
+            $u=new Usuario($_POST['guardar'],$_POST['nombre'],
+                $_POST['perfil'],($_POST['perfil']=='J'?$_POST['equipo']:null));
+            if(!$this->modelo->modificarUsuario($u)){
+                throw new Exception('Error al modificar el usuario');
+            }
+        } catch (\Throwable $th) {
+           $_SESSION['error'][]=$th->getMessage();
+        }
+        //Redirigimos a la página federación/usuarios
+        header('location:index.php?controlador=federacion&accion=usuarios');     
+    }
     
 }
 ?>

@@ -76,5 +76,22 @@ class ModeloLogin{
         }
         return $resultado;
     }
+
+    function modificarUsuario(Usuario $u){
+        $resultado = false;
+        try {
+            $consulta = ConexionBD::$conexion->prepare('UPDATE usuarios 
+            set nombre=?, perfil=?, id_equipo=? where dni=?');
+            //numReg contiene el número de regristro insertados.
+            //execute cuando la consulta es Insert, update o delete, devuelve el número de registros afectados
+            $numReg=$consulta->execute(array($u->getNombre(),$u->getPerfil(),$u->getEquipo(),$u->getDni()));
+            if($numReg==1){
+                $resultado=true;
+            }
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+        return $resultado;
+    }
 }
 ?>

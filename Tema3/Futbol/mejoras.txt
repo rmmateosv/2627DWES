@@ -1,0 +1,3 @@
+- MEJORAS
+- Comprobar si ya existe usuario con ese DNI
+- No dejar borrarse a uno mismo

@@ -5,4 +5,5 @@ if(isset($_SESSION['error'])){
     }
     unset($_SESSION['error']);
 }
+
 ?>

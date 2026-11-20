@@ -8,6 +8,7 @@ define('RAIZ',__DIR__.'/..');
 //Cargar las clases que mapean la tablas
 require_once RAIZ.'/modelos/Usuario.php';
 require_once RAIZ.'/modelos/Equipo.php';
+require_once RAIZ.'/modelos/Partido.php';
 
 //Iniciar sesión
 session_start();

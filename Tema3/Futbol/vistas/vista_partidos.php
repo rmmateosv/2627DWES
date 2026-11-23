@@ -60,7 +60,17 @@
             if(isset($partidos)){
                 foreach($partidos as $p){
                     echo '<tr>';
+                    echo '<td>'.$p->getFecha().'</td>';
+                    echo '<td>'.$p->getEquipoL()->getNombre().'</td>';
+                    echo '<td>'.$p->getGolesEL().'</td>';
+                    echo '<td>'.$p->getEquipoV()->getNombre().'</td>';
+                    echo '<td>'.$p->getGolesEV().'</td>';
+                    echo '<td>'.$p->getFinalizado().'</td>';
                     echo '<td>';
+                    echo '<form action="index.php?controlador=federacion&accion=finalizarP" method="post">';
+                    echo '<button type="submit" name="finalizarP" value="'.$p->getId().'">Finalizar</button>';
+                    echo '</form>';
+                    echo '</td>';
                     echo '</tr>';
                 }
             }

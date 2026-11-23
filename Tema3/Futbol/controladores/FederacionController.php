@@ -46,12 +46,16 @@ class FederacionController{
                 throw new Exception('Los equipos no pueden coincidir');
             }
             //Crear partido
-            $p=$this->modeloP->crearPartido(new Partido(null,$_POST['fecha'],$_POST['equipoL'],$_POST['equipoV'],null,null,null));
+            $p=$this->modeloP->crearPartido(new Partido(null,$_POST['fecha'],
+            $_POST['equipoL'],$_POST['equipoV'],null,null,null));
+            //Generar mensajes informativos
+            $_SESSION['mensajes'][]='Partido creado con id:'.$p->getId();
+
             
         } catch (\Throwable $th) {
             $_SESSION['error'][]=$th->getMessage();
         }
-        
+        header('location:index.php?controlador=federacion&accion=partidos');
     }
 }
 ?>

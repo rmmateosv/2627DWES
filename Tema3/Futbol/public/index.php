@@ -9,6 +9,7 @@ define('RAIZ',__DIR__.'/..');
 require_once RAIZ.'/modelos/Usuario.php';
 require_once RAIZ.'/modelos/Equipo.php';
 require_once RAIZ.'/modelos/Partido.php';
+require_once RAIZ.'/modelos/Colegiado.php';
 
 //Iniciar sesión
 session_start();

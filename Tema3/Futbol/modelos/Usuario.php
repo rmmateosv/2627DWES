@@ -1,9 +1,10 @@
 <?php
 //Representa la tabla Usuarios
 class Usuario{
-    private $dni, $nombre, $perfil, $equipo;
+    private $id, $dni, $nombre, $perfil, $equipo;
 
-    function __construct($dni, $nombre, $perfil, $equipo){
+    function __construct($id, $dni, $nombre, $perfil, $equipo){
+        $this->id=$id;    
         $this->dni=$dni;
         $this->nombre=$nombre;
         $this->perfil=$perfil;
@@ -82,6 +83,24 @@ class Usuario{
     public function setEquipo($equipo)
     {
         $this->equipo = $equipo;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     */
+    public function setId($id): self
+    {
+        $this->id = $id;
 
         return $this;
     }

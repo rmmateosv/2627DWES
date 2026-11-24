@@ -2,17 +2,20 @@
 require_once RAIZ.'/modelos/ModeloLogin.php';
 require_once RAIZ.'/modelos/ModeloEquipo.php';
 require_once RAIZ.'/modelos/ModeloPartido.php';
+require_once RAIZ.'/modelos/ModeloColegiado.php';
 
 class FederacionController{
     private $modeloL;
     private $modeloE;
     private $modeloP;
+    private $modeloC;
 
     function __construct()
     {
         $this->modeloL = new ModeloLogin();
         $this->modeloE = new ModeloEquipo();
         $this->modeloP = new ModeloPartido();
+        $this->modeloC = new ModeloColegiado();
     }
     function cargar(){
         require RAIZ.'/vistas/vista_federacion.php';
@@ -64,6 +67,9 @@ class FederacionController{
            if($p==null){
             throw new Exception('Partido no encontrado');
            }
+           if($p->getFinalizado()){
+            throw new Exception('Partido ya finalizado');
+           }
            //Rellenamos los goles
            $p->setGolesEL(rand(0,10));
            $p->setGolesEV(rand(0,10));
@@ -75,6 +81,32 @@ class FederacionController{
 
         } catch (\Throwable $th) {
              $_SESSION['error'][]=$th->getMessage();
+        }
+        header('location:index.php?controlador=federacion&accion=partidos');
+    }
+
+    function arbitros(){
+        //REcuperar los datos del partido
+        $p = $this->modeloP->obtenerPartido($_POST['arbitros']);
+        //Recuperar los posibles árbitros
+        $arbitros = $this->modeloC->obtenerArbitros();
+        //Cargar vista para tabla colegiados
+        require_once RAIZ.'/vistas/vista_colegiados.php';
+    }
+
+    function asignarA(){
+        try {
+           //Chequear que tene os partido y árbitro
+           if(!isset($_POST['arbitro']) || !isset($_POST['asignar'])){
+                throw new Exception('Selecciona árbitro y partido');
+           }
+           //Asignar el árbitro al partido
+           if(!$this->modeloC->asignar($_POST['arbitro'],$_POST['asignar'])){
+                throw new Exception('Error al asignar el árbitro');
+           }
+           $_SESSION['mensajes'][]='Árbitro asignado';
+        } catch (\Throwable $th) {
+            $_SESSION['error'][]=$th->getMessage();
         }
         header('location:index.php?controlador=federacion&accion=partidos');
     }

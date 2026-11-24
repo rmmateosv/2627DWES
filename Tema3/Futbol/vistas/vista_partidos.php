@@ -60,15 +60,20 @@
             if(isset($partidos)){
                 foreach($partidos as $p){
                     echo '<tr>';
-                    echo '<td>'.$p->getFecha().'</td>';
+                    echo '<td>'.date('d/m/Y h:i',strtotime($p->getFecha())).'</td>';
                     echo '<td>'.$p->getEquipoL()->getNombre().'</td>';
                     echo '<td>'.$p->getGolesEL().'</td>';
                     echo '<td>'.$p->getEquipoV()->getNombre().'</td>';
                     echo '<td>'.$p->getGolesEV().'</td>';
-                    echo '<td>'.$p->getFinalizado().'</td>';
+                    echo '<td>'.($p->getFinalizado()?'X':'-').'</td>';
                     echo '<td>';
+                    if(!$p->getFinalizado()){
                     echo '<form action="index.php?controlador=federacion&accion=finalizarP" method="post">';
                     echo '<button type="submit" name="finalizarP" value="'.$p->getId().'">Finalizar</button>';
+                    echo '</form>';
+                    }
+                    echo '<form action="index.php?controlador=federacion&accion=arbitros" method="post">';
+                    echo '<button type="submit" name="arbitros" value="'.$p->getId().'">Árbitros</button>';
                     echo '</form>';
                     echo '</td>';
                     echo '</tr>';

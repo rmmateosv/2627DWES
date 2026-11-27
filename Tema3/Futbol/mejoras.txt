@@ -1,3 +1,7 @@
 - MEJORAS
 - Comprobar si ya existe usuario con ese DNI
 - No dejar borrarse a uno mismo
+- Controlar que cada usuario solamente puede acceder a las urls de su perfil
+- Estadística con procedure
+- Función para crear un equipo, devulve el id del equipo creado o -1 si error, hacer en la vista de partidos
+- Transacción: borrar partido

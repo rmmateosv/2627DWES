@@ -10,8 +10,34 @@
 </head>
 <body>
     <div class="container">
+    <?php 
+        require RAIZ.'/vistas/menu.php';
+     ?>
     <h1>LIGA DE FÚTBOL ies AUGUSTÓBRIGA</h1>
     <h2>Gestión de arbitraje</h2>
+    <h3>Partidos arbitrados</h3>
+    <table>
+        <tr>
+            <td>ID</td>
+            <td>Fecha</td>
+            <td>Equipo Local</td>
+            <td>Equipo Visatante</td>
+            <td>Resultado</td>
+        </tr> 
+       <?php 
+        if(isset($partidos)){
+            foreach($partidos as $p){
+                echo '<tr>';
+                echo '<td>'.$p->getId().'</td>';
+                echo '<td>'.date('d/m/Y',strtotime($p->getFecha())).'</td>';
+                echo '<td>'.$p->getEquipoL()->getNombre().'</td>';
+                echo '<td>'.$p->getEquipoV()->getNombre().'</td>';
+                echo '<td>'.$p->getGolesEL().'-'.$p->getGolesEV().'</td>';
+                echo '</tr> ';
+            }
+        }
+         ?>
+    </table>
     <?php 
         require RAIZ.'/vistas/pie.php';
      ?>

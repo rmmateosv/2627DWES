@@ -48,6 +48,64 @@ create table colegiados(
     on delete restrict on update cascade
 )engine innodb;
 
+delimiter //
+create procedure estadisticaJugador(jugador int)
+begin
+	declare partidosJugadosEL, partidosGanadosEL, golesFavorEL, golesContraEL int;
+    declare partidosJugadosEV, partidosGanadosEV, golesFavorEV, golesContraEV int;
+    declare partidosEmpatados int;
+    
+    -- Calculos equipo como local
+    select count(*), ifnull(sum(golesEL),0), ifnull(sum(golesEV),0) into partidosJugadosEL, golesFavorEL, golesContraEL
+		from partidos p join usuarios u on p.id_equipoL = u.id_equipo
+        where u.id = jugador;
+	-- Ganados como Equipo local
+     select count(*)  into partidosGanadosEL
+		from partidos p join usuarios u on p.id_equipoL = u.id_equipo
+        where u.id = jugador and golesEL > golesEV;
+	-- Empatados como Equipo local
+     select count(*)  into partidosEmpatados
+		from partidos p join usuarios u on p.id_equipoL = u.id_equipo
+        where u.id = jugador and golesEL = golesEV;
+        
+	-- Calculos equipo como visitante
+    select count(*), ifnull(sum(golesEV),0), ifnull(sum(golesEL),0) into partidosJugadosEV, golesFavorEV, golesContraEV
+		from partidos p join usuarios u on p.id_equipoV = u.id_equipo
+        where u.id = jugador;
+	-- Ganados como Equipo local
+     select count(*)  into partidosGanadosEV
+		from partidos p join usuarios u on p.id_equipoL = u.id_equipo
+        where u.id = jugador and golesEV > golesEL;
+        
+	-- Resultado
+    select partidosJugadosEL+partidosJugadosEV as jugados, 
+			partidosGanadosEL+partidosGanadosEV as ganados, 
+            golesFavorEL+golesFavorEV as golesFavor, 
+            golesContraEL + golesContraEV as golesContra,
+            partidosEmpatados as empatados;
+      
+end//
+-- Función para crear un equipo, devulve el id del equipo creado o -1 si error
+create function crearEquipo(pNombre varchar(100), pCp int) returns int deterministic
+begin
+	declare idEquipo int;
+	-- Comprobar si existe otro equipo con el mismo nombre
+    select id into idEquipo from equipos where nombre = pNombre;
+    if(idEquipo is not null) then
+		return -1;
+    else
+		insert into equipos values (null, pNombre, pCp);
+        return last_insert_id();
+    end if;
+end//
+
+delimiter ;
+
+
+
+
+
+
 
 
 

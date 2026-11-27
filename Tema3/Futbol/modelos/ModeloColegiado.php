@@ -43,5 +43,30 @@ class ModeloColegiado{
         }
         return $resultado;
     }
+    function obtenerPartidosColegiado($idArbitro){
+        $resultado = array();
+        try {
+            $consulta = ConexionBD::$conexion->prepare('SELECT * from colegiados c 
+                                            join partidos p on c.id_partido = p.id
+                                            join equipos el on el.id = p.id_equipoL
+                                            join equipos ev on ev.id = p.id_equipoV
+                                            where c.id_arbitro=? 
+                                            order by p.fecha desc');
+            if($consulta->execute(array($idArbitro))){
+                while($fila=$consulta->fetch()){
+                    $resultado[]=new Partido($fila['id_partido'],
+                    $fila['fecha'],
+                    new Equipo($fila['id_equipoL'],$fila[10],$fila[11]),
+                    new Equipo($fila['id_equipoV'],$fila[13],$fila[14]),
+                    $fila['golesEL'],
+                    $fila['golesEV'],
+                    $fila['finalizado']);
+                }
+            }
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+        return $resultado;
+    }
 }
 ?>

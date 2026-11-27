@@ -18,7 +18,7 @@ class ModeloColegiado{
         try {
             $consulta = ConexionBD::$conexion->prepare('INSERT into colegiados values (?,?)');
             $r = $consulta->execute(array($partido,$abitro));
-            if($r==1){
+            if($consulta->rowCount()==1){
                 $resultado = true;
             }
         } catch (\Throwable $th) {

@@ -10,6 +10,9 @@
 </head>
 <body>
     <div class="container">
+    <?php 
+        require RAIZ.'/vistas/menu.php';
+     ?>
     <h1>LIGA DE FÚTBOL ies AUGUSTÓBRIGA</h1>
     <h2>Jugadores</h2>
     <?php 

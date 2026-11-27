@@ -55,7 +55,7 @@ class ModeloLogin{
             //numReg contiene el número de regristro insertados.
             //execute cuando la consulta es Insert, update o delete, devuelve el número de registros afectados
             $numReg=$consulta->execute(array($u->getDni(),$u->getNombre(),$u->getDni(),$u->getPerfil(),$u->getEquipo()));
-            if($numReg==1){
+            if($consulta->rowCount()==1){
                 $resultado=true;
             }
         } catch (\Throwable $th) {
@@ -70,7 +70,7 @@ class ModeloLogin{
             //numReg contiene el número de regristro insertados.
             //execute cuando la consulta es Insert, update o delete, devuelve el número de registros afectados
             $numReg=$consulta->execute(array($dni));
-            if($numReg==1){
+            if($consulta->rowCount()==1){
                 $resultado=true;
             }
         } catch (\Throwable $th) {
@@ -87,7 +87,7 @@ class ModeloLogin{
             //numReg contiene el número de regristro insertados.
             //execute cuando la consulta es Insert, update o delete, devuelve el número de registros afectados
             $numReg=$consulta->execute(array($u->getNombre(),$u->getPerfil(),$u->getEquipo(),$u->getDni()));
-            if($numReg==1){
+            if($consulta->rowCount()==1){
                 $resultado=true;
             }
         } catch (\Throwable $th) {

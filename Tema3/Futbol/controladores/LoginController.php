@@ -23,7 +23,7 @@ class LoginController{
             }
             elseif($_SESSION['usuario']->getPerfil()=='J'){
                 //Cargar el controlador de Federación
-                header('location:index.php?controlador=jugador&accion=cargar');
+                header('location:index.php?controlador=futbolista&accion=cargar');
             }
         }       
         //Cargar la vista

@@ -15,8 +15,10 @@
      ?>
     <h1>LIGA DE FÚTBOL ies AUGUSTÓBRIGA</h1>
     <h2>Gestión de Colegiados</h2>
+    <?php if(isset($p)){ ?>
     <h3>Partido: <?php echo $p->getId().'-'.$p->getEquipoL()->getNombre().
                         '-'.$p->getEquipoV()->getNombre();?></h3>
+    <?php } ?>
     <div>
         <form action="index.php?controlador=federacion&accion=asignarA" method="post">                     
             Árbitros<select name="arbitro">
@@ -29,8 +31,10 @@
                     }
                  }
                  ?>
-            </select>            
+            </select>  
+            <?php if(isset($p)){ ?>          
             <button type="submit" class="btn btn-light" name="asignar" value="<?php echo $p->getId()?>">Asignar Árbitro</button>
+            <?php } ?>
         </form>
     </div>
     <br>    

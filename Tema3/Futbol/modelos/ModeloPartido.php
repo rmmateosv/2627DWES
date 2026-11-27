@@ -27,7 +27,7 @@ class ModeloPartido{
         try {
             $consulta = ConexionBD::$conexion->prepare('INSERT into partidos values (default,?,?,?,0,0,false)');
             $r = $consulta->execute(array($p->getFecha(),$p->getEquipoL(),$p->getEquipoV()));
-            if($r==1){
+            if($consulta->rowCount()==1){
                 //Obtener el id del partido creado y se lo ponemos a $p
                 $p->setId(ConexionBD::$conexion->lastInsertId());
                 return $p;
@@ -69,7 +69,7 @@ class ModeloPartido{
                                                             golesEV=?, finalizado=true 
                                                             where id = ?');
             $r = $consulta->execute(array($p->getGolesEL(),$p->getGolesEV(),$p->getId()));
-            if($r==1){
+            if($consulta->rowCount()==1){
                 return true;
             }
         } catch (\Throwable $th) {

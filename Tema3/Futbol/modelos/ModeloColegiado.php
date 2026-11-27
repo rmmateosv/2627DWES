@@ -5,7 +5,7 @@ class ModeloColegiado{
         try {
             $consulta = ConexionBD::$conexion->query('SELECT * from usuarios where perfil ="A"');
             while($fila=$consulta->fetch()){
-                $resultado[]= new Usuario($fila['dni'],$fila['nombre'],'A',null);
+                $resultado[]= new Usuario($,fila[$fila['dni'],$fila['nombre'],'A',null);
             }
         } catch (\Throwable $th) {
             throw $th;

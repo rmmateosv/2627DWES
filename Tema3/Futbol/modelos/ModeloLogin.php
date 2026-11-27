@@ -16,7 +16,7 @@ class ModeloLogin{
                 //Recuperamos lo que devuelve en un if
                 if($fila=$consulta->fetch()){
                     //Crear objeto usuario
-                    $resultado = new Usuario($fila['dni'],$fila['nombre'],
+                    $resultado = new Usuario($fila['id'],$fila['dni'],$fila['nombre'],
                         $fila['perfil'],$fila['id_equipo']);
                 }
             }
@@ -38,7 +38,9 @@ class ModeloLogin{
             //puede devolver más de un registro. HAcemos un WHILE
             while($fila=$consulta->fetch()){
                 //Añadimos a resultado un objeto Usuario que se crea con los datos de fila
-                $resultado[]=new Usuario($fila['dni'],$fila[2],$fila['perfil'],
+                //$fila[0] es el id de usuario, ponesmo 0 en vez de id porque hay
+                //join y la tabla equipos también tiene id.
+                $resultado[]=new Usuario($fila[0],$fila['dni'],$fila[2],$fila['perfil'],
                 ($fila['id_equipo']==null?null:new Equipo($fila['id_equipo'],$fila[7],$fila['cp'])));
             }
         } catch (\Throwable $th) {

@@ -25,7 +25,7 @@
                  //$atbitros es un array de objetos usuario
                  if(isset($arbitros)){
                     foreach ($arbitros as $a) {
-                        echo '<option value="'.$a->getDni().'">'.$a->getNombre().'</option>';
+                        echo '<option value="'.$a->getId().'">'.$a->getNombre().'</option>';
                     }
                  }
                  ?>
@@ -38,37 +38,21 @@
         <!-- MOSTRAR COLEGIADOS -->
          <table class="table">
             <tr>
-                <td>FECHA</td>
-                <td>EQUIPO LOCAL</td>
-                <td>GOLES</td>
-                <td>EQUIPO VISITANTE</td>                
-                <td>GOLES</td>
-                <td>FINALIZADO</td>  
-                <td>Acciones</td>
+                <td>ID</td>
+                <td>DNI</td>
+                <td>NOMBRE</td>
             </tr>
             <?php 
-            /*if(isset($partidos)){
-                foreach($partidos as $p){
-                    echo '<tr>';
-                    echo '<td>'.date('d/m/Y h:i',strtotime($p->getFecha())).'</td>';
-                    echo '<td>'.$p->getEquipoL()->getNombre().'</td>';
-                    echo '<td>'.$p->getGolesEL().'</td>';
-                    echo '<td>'.$p->getEquipoV()->getNombre().'</td>';
-                    echo '<td>'.$p->getGolesEV().'</td>';
-                    echo '<td>'.($p->getFinalizado()?'X':'-').'</td>';
-                    echo '<td>';
-                    if(!$p->getFinalizado()){
-                    echo '<form action="index.php?controlador=federacion&accion=finalizarP" method="post">';
-                    echo '<button type="submit" name="finalizarP" value="'.$p->getId().'">Finalizar</button>';
-                    echo '</form>';
-                    }
-                    echo '<form action="index.php?controlador=federacion&accion=arbitros" method="post">';
-                    echo '<button type="submit" name="arbitros" value="'.$p->getId().'">Árbitros</button>';
-                    echo '</form>';
-                    echo '</td>';
-                    echo '</tr>';
-                }
-            }*/
+            if(isset($colegiados)){
+            foreach($colegiados as $c)    {
+                 echo '<tr>';
+                 echo '<td>'.$c->getId().'</td>';
+                 echo '<td>'.$c->getDni().'</td>';
+                 echo '<td>'.$c->getNombre().'</td>';
+                 echo '</tr>';
+            }
+           
+            }
              ?>
          </table>
     </div>

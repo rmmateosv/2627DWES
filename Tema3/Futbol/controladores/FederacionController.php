@@ -90,6 +90,8 @@ class FederacionController{
         $p = $this->modeloP->obtenerPartido($_POST['arbitros']);
         //Recuperar los posibles árbitros
         $arbitros = $this->modeloC->obtenerArbitros();
+        //Cargar colegiados del partido
+        $colegiados = $this->modeloC->obtenerColegiadosPartido($_POST['arbitros']);
         //Cargar vista para tabla colegiados
         require_once RAIZ.'/vistas/vista_colegiados.php';
     }

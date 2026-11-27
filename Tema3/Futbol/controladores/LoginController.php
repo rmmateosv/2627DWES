@@ -69,7 +69,7 @@ class LoginController{
                 throw new Exception('Rellena equipo para los jugadores');
             }
             //Insert de usuario
-            $u=new Usuario($_POST['dni'],$_POST['nombre'],
+            $u=new Usuario(null, $_POST['dni'],$_POST['nombre'],
                 $_POST['perfil'],($_POST['perfil']=='J'?$_POST['equipo']:null));
             if(!$this->modelo->crearUsuario($u)){
                 throw new Exception('Error al crear el usuario');
@@ -102,7 +102,7 @@ class LoginController{
                 throw new Exception('Rellena equipo para los jugadores');
             }
             //Update de usuario
-            $u=new Usuario($_POST['guardar'],$_POST['nombre'],
+            $u=new Usuario(null,$_POST['guardar'],$_POST['nombre'],
                 $_POST['perfil'],($_POST['perfil']=='J'?$_POST['equipo']:null));
             if(!$this->modelo->modificarUsuario($u)){
                 throw new Exception('Error al modificar el usuario');
